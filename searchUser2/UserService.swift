@@ -12,7 +12,7 @@ import Alamofire
 //static SEARCH_USER_API = "https://api.github.com/search/users?q=simon"
 
 class UserService: NSObject {
-    private let count_per_page : Int = 50
+    private let count_per_page : Int = 60
     public static let shared: UserService = UserService()
     
     public func getUsers(withKeyword keyword:String, page:Int, completion: @escaping (_ users: [User], _ error: Error?)->()) {
@@ -31,14 +31,11 @@ class UserService: NSObject {
                 var users: [User] = []
                 
                 if(response.result.isSuccess) {
-                    guard let data = response.data else {return}
-                    do {
-                        let allData = try JSONDecoder().decode(AllUsersModel.self, from: data)
+                    if let data = response.data, let allData = try? JSONDecoder().decode(AllUsersModel.self, from: data)
+                    {
                         users = allData.items ?? [];
                     }
-                    catch {}
                 }
-                
                 completion(users, response.error)
         }
     }

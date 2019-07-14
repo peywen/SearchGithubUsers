@@ -11,6 +11,7 @@ import Toaster
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, ViewModelDelegate {
     private let LOAD_MORE_WEHN_LESS_THAN : Int = 3
+    private let NUM_OF_CELL_PER_ROW : Int = 3
     private let refreshControl = UIRefreshControl()
     var searchBar : UISearchBar
     var collectionView : UICollectionView
@@ -19,7 +20,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     required init?(coder aDecoder: NSCoder) {
         searchBar = UISearchBar()
-        cellWidth = (UIScreen.main.bounds.size.width - 8) / 3.0
+        cellWidth = (UIScreen.main.bounds.size.width - 8) / CGFloat(NUM_OF_CELL_PER_ROW)
         viewModel = ViewModel()
 
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
