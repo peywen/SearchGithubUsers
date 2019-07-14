@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (4.8.2)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - Toaster (2.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.8.0)
+  - SDWebImage (~> 4.4.2)
+  - Toaster
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - SDWebImage
+    - Toaster
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
+
+PODFILE CHECKSUM: 26e1c16ba4d3dee8ed11fa20517a64f30a344323
+
+COCOAPODS: 1.7.2
