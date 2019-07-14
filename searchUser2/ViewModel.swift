@@ -21,44 +21,24 @@ class ViewModel: NSObject {
     var searchKeyword : String? = ""
     private var total_record : Int = 0
     
-    func fetchData() {
-        currentPage = 1
-        total_record = 0
-        UserService.shared.getUsers(withKeyword: searchKeyword ?? "", page: currentPage) { (result, error) in
-            if let error = error {
-                print("Error:", error.localizedDescription as Any)
-                self.delegate?.showToast(with: error.localizedDescription)
-                return
-            }
-            guard let result = result, let items = result.items else {
-                self.delegate?.showToast(with: "Reaches the API limit, plz try later")
-                return
-            }
-            self.total_record = result.total_count ?? 0
-            self.users = items
-            self.delegate?.reloadUI()
-        }
-    }
-    
     func fetchData(keyWord: String) {
         currentPage = 1
         total_record = 0
-        if searchKeyword == keyWord { return }
-        
+
         searchKeyword = keyWord
-        UserService.shared.getUsers(withKeyword: searchKeyword ?? "", page: currentPage) { (result, error) in
+        UserService.shared.getUsers(withKeyword: searchKeyword ?? "", page: currentPage) { [weak self] (result, error) in
             if let error = error {
                 print("Error:", error.localizedDescription as Any)
-                self.delegate?.showToast(with: error.localizedDescription)
+                self?.delegate?.showToast(with: error.localizedDescription)
                 return
             }
             guard let result = result, let items = result.items else {
-                self.delegate?.showToast(with: "Reaches the API limit, plz try later")
+                self?.delegate?.showToast(with: "Reaches the API limit, plz try later")
                 return
             }
-            self.total_record = result.total_count ?? 0
-            self.users = items
-            self.delegate?.reloadUI()
+            self?.total_record = result.total_count ?? 0
+            self?.users = items
+            self?.delegate?.reloadUI()
         }
     }
     
@@ -66,19 +46,19 @@ class ViewModel: NSObject {
         if(currentPage * count_per_page >  total_record) { return }
 
         currentPage = currentPage + 1;
-        UserService.shared.getUsers(withKeyword: searchKeyword ?? "", page: currentPage) { (result, error) in
+        UserService.shared.getUsers(withKeyword: searchKeyword ?? "", page: currentPage) { [weak self] (result, error) in
             if let error = error {
                 print("Error:", error.localizedDescription as Any)
-                self.delegate?.showToast(with: error.localizedDescription)
+                self?.delegate?.showToast(with: error.localizedDescription)
                 return
             }
             guard let result = result, let items = result.items else {
-                self.delegate?.showToast(with: "Reaches the API limit, plz try later")
+                self?.delegate?.showToast(with: "Reaches the API limit, plz try later")
                 return
             }
-            self.total_record = result.total_count ?? 0
-            self.users?.append(contentsOf: items)
-            self.delegate?.reloadUI()
+            self?.total_record = result.total_count ?? 0
+            self?.users?.append(contentsOf: items)
+            self?.delegate?.reloadUI()
         }
     }
 }

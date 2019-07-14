@@ -38,7 +38,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         setupUI()
         viewModel.delegate = self
-        self.viewModel.fetchData()
+        self.viewModel.fetchData(keyWord: "")
     }
     
     func setupUI() {
@@ -73,7 +73,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     @objc private func refreshData(_ sender: Any) {
-        self.viewModel.fetchData()
+        self.viewModel.fetchData(keyWord: "")
     }
     
     //  MARK: Collection View Delegates
@@ -94,7 +94,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         searchBar.text = ""
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.resignFirstResponder()
-        self.viewModel.fetchData(keyWord: searchBar.text ?? "")
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
