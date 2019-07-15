@@ -73,7 +73,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     @objc private func refreshData(_ sender: Any) {
-        self.viewModel.fetchData(keyWord: "")
+        self.viewModel.fetchData(keyWord: self.searchBar.text ?? "")
     }
     
     //  MARK: Collection View Delegates
