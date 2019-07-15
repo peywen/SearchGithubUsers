@@ -1,6 +1,7 @@
 # SearchGithubUsers
-- Display Github users with avatar by name
+- Display Github users with avatar and name
 - Can search users by name
+- Pagingnation, can automatically load next page
 
 # Notes
  - There are some run-time warnings caused by 3rd-party library, and we can ignore them.
@@ -10,4 +11,3 @@
  - SDWebImage
  - Alamofire
  - Toaster (To display errors coming from APIs)
-
